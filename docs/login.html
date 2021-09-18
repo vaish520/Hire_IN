@@ -14,15 +14,20 @@
      <section class='p-lg-5 p-md-5 m-5'>
          <div class="container hire-login-container p-5">
              <div class=" text-center pb-4 h2 hire-login-title">HireIN</div>
-             <form action="GET" class='d-inline-block text'>
-                 <div> <label for="" class="hire-login-subtitle"> Email :</label></div>
-                 <div><input type="email" size="40" placeholder="" value=""></div>
-                 <br />
-                 <div> <label for="" class="hire-login-subtitle">Password :</label></div>
-                 <div><input type="password" size="40" placeholder="" value=""></div>
-                 <br />
-                 <button class="hire-login-submit p-2">LOGIN</button>
-             </form>
+             <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1" class="hire-login-subtitle">Email :</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                </div>
+                <br/>
+                <div class="form-group">
+                  <label for="exampleInputPassword1"  class="hire-login-subtitle">Password :</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+                </div>
+                <br />
+                <button type="submit" class="hire-login-submit  p-2 w-100">LOGIN</button>
+                <small class="hire-login-small align-items-center px-lg-5 mx-lg-2">Create New Account, <u>Sign Up</u></small>
+              </form>
          </div>
      </section>
 
