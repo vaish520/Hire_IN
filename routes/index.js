@@ -6,8 +6,8 @@ router.get('/',(req,res)=>{
 
 router.post('/',(req,res)=>{
     let email = req.body.email;
-    let paasword = rq.body.password;
-    res.send ('Email Address: ${ email } Password: ${ password }');
+    let password = req.body.password;
+    res.send (`Email Address: ${ email } Password: ${ password }`);
 });
 
 module.exports = router;
