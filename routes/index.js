@@ -7,6 +7,10 @@ router.get('/',(req,res)=>{
 
     res.render('login');
 })
+router.get('/index',(req,res)=>{
+
+    res.render('index');
+})
 router.post('/',(req,res,next) =>{
     passport.authenticate('local',
     (err,user,info) =>{
