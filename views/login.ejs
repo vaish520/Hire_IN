@@ -27,9 +27,21 @@
                 <br />
                 <button type="submit" class="hire-login-submit  p-2 w-100">LOGIN</button>
                 <small class="hire-login-small align-items-center px-lg-5 mx-lg-2">Create New Account, <u>Sign Up</u></small>
+                <label id="error-message"></label>
               </form>
          </div>
      </section>
+     <script>
+
+       const urlParams = new URLSearchParams(window.location.search);
+       const info = urlParams.get('info');
+       if(info){
+        const errorMessage = document.getElementById("error-message");
+       errorMessage.innerText = info;
+       errorMessage.style.display="block";
+       }
+      
+     </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
