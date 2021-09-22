@@ -1,0 +1,28 @@
+{
+  "name": "Hire_IN",
+  "version": "1.0.0",
+  "description": "A web application to provide resource and platform for hiring students.\r Figma : https://www.figma.com/file/rDm6aTRyXshNb64iLAQiM1/HireIn?node-id=2%3A2",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madhhuurrii/Hire_IN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madhhuurrii/Hire_IN/issues"
+  },
+  "homepage": "https://github.com/madhhuurrii/Hire_IN#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "router": "^1.3.5"
+  }
+}
