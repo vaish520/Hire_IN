@@ -4,13 +4,14 @@ const mongoose = require('mongoose');
 // const path = require('path');
 const User = require('./model/user');
 const bcrypt = require('bcrypt');
+require("dotenv").config();
 
-
-mongoose.connect('mongdb://localhost:27017/login-app',{
+mongoose.connect(process.env.MONGO_PROD_URI,{
     useNewUrlParser: true,
-    useUnifiedTopology: true
-    
-}, ()=> console.log("DB Connected"))
+    useUnifiedTopology: true,
+ 
+}).then(()=> console.log("DB Connected"))
+.catch(err=>console.log(err))
 
 
 //Middleware
@@ -34,8 +35,18 @@ app.get('/register',(req,res)=>{
     res.render('register');
 })
 app.post('/api/login', async(req,res) =>{
-    console.log(req.body)
+   
    const { email, password: plainTextPassword  }= req.body
+
+   if(!email || typeof  email !== 'string'){
+       return  res.json({ status: 'error', error: 'Invalid Email' })
+   }
+   if(!plainTextPassword || typeof  email !== 'string'){
+    return  res.json({ status: 'error', error: 'Invalid Password' })
+}
+if(!plainTextPassword.length<5){
+    return  res.json({ status: 'error', error: 'Passowrd too small' })
+}
 
    const password = await bcrypt.hash(plainTextPassword,10)
 
@@ -46,8 +57,11 @@ app.post('/api/login', async(req,res) =>{
        })
        console.log("User created successfully!", response)
    } catch(error){
-       console.log(error);
-       return res.json({ status: error })
+       if(error.code === 11000){
+        return res.json({ status: 'error', error: 'Username already exists!' })
+       }
+       throw error 
+      
    }
     res.json ({ status : 'ok' })
 })

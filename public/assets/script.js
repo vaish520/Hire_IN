@@ -17,5 +17,10 @@ async function loginUser(event){
     })
 
   }).then((res)=> res.json())
-  console.log(result);
+  
+  if(result.status ==='ok'){
+    alert("Registration Successful!");
+  }else{
+    alert(result.error);
+  }
 }
