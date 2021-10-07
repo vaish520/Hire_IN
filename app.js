@@ -34,9 +34,10 @@ app.get('/register',(req,res)=>{
 
     res.render('register');
 })
-app.post('/api/login', async(req,res) =>{
+
+app.post('/api/register', async(req,res) =>{
    
-   const { email, password: plainTextPassword  }= req.body
+   const { name, email, college, branch, year, contact, password: plainTextPassword , confirm}= req.body
 
    if(!email || typeof  email !== 'string'){
        return  res.json({ status: 'error', error: 'Invalid Email' })
@@ -44,16 +45,21 @@ app.post('/api/login', async(req,res) =>{
    if(!plainTextPassword || typeof  email !== 'string'){
     return  res.json({ status: 'error', error: 'Invalid Password' })
 }
-if(!plainTextPassword.length<5){
+if(plainTextPassword.length<5){
     return  res.json({ status: 'error', error: 'Passowrd too small' })
 }
 
    const password = await bcrypt.hash(plainTextPassword,10)
-
    try{
        const response = await User.create({
+           name,
            email,
-           password
+           college,
+           branch,
+           year,
+           contact,
+           password,
+           confirm
        })
        console.log("User created successfully!", response)
    } catch(error){

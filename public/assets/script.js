@@ -1,19 +1,32 @@
-const form = document.getElementById("login-form");
+const form = document.getElementById("reg-form");
 form.addEventListener('submit', loginUser);
 
 async function loginUser(event){
   event.preventDefault()
+  const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const college = document.getElementById("college").value;
+  const branch = document.getElementById("branch").value;
+  const year = document.getElementById("year").value;
+  const contact = document.getElementById("contact").value;
 
-  const result =await fetch("/api/login", {
+  const password = document.getElementById("password").value;
+  const confirm = document.getElementById("confirm").value;
+
+  const result =await fetch("/api/register", {
     method : 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body : JSON.stringify({
+      name,
       email,
-      password
+      college,
+      branch,
+      year,
+      contact,
+      password,
+      confirm
     })
 
   }).then((res)=> res.json())
