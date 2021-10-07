@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const article = require('./routes/article');
 // const path = require('path');
 const User = require('./model/user');
 const bcrypt = require('bcrypt');
@@ -20,6 +21,7 @@ mongoose.connect(process.env.MONGO_PROD_URI,{
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true}))
 app.use(express.json())
+app.use('/article',article)
 
 // app.get('/', (req,res) => {
 //     res.sendFile(__dirname+'/views/');
@@ -35,6 +37,10 @@ app.get('/index',(req,res)=>{
 app.get('/register',(req,res)=>{
 
     res.render('register');
+})
+app.get('/', async(req,res)=>{
+    const articles = await article.find().sort({ createdAt: desc})
+    res.render('artcles/index', {articles: articles})
 })
 
 app.post('/login', async(req,res) =>{
