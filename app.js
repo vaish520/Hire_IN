@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 // const path = require('path');
 const User = require('./model/user');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 require("dotenv").config();
+const JWT_SECRET = 'sdkqwertyuiopsasdfghjklzxcvbnm,.!@#$%^&*()+_-;\qsbsnay\pe^jjjsnqll';
 
 mongoose.connect(process.env.MONGO_PROD_URI,{
     useNewUrlParser: true,
@@ -35,7 +37,25 @@ app.get('/register',(req,res)=>{
     res.render('register');
 })
 
-app.post('/api/register', async(req,res) =>{
+app.post('/login', async(req,res) =>{
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email }).lean()
+    if(!user){
+        return res.json({ status: 'error', error: 'Invalid email password'})
+    }
+    if(await bcrypt.compare(password, user.password)){
+        const token = jwt.sign({ 
+            id: user._id, 
+            email : user.email
+        }, JWT_SECRET )
+        return res.json({ status: 'ok', data: token}).redirect("/index")
+    }
+
+    res.json({ status : "error", error: "Inavlid password" })
+})
+
+app.post('/register', async(req,res) =>{
    
    const { name, email, college, branch, year, contact, password: plainTextPassword , confirm}= req.body
 
@@ -62,6 +82,7 @@ if(plainTextPassword.length<5){
            confirm
        })
        console.log("User created successfully!", response)
+       res.redirect("/")
    } catch(error){
        if(error.code === 11000){
         return res.json({ status: 'error', error: 'Username already exists!' })
@@ -69,7 +90,7 @@ if(plainTextPassword.length<5){
        throw error 
       
    }
-    res.json ({ status : 'ok' })
+    res.json ({ status : 'ok' });
 })
 
 //Import Route 
