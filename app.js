@@ -40,7 +40,7 @@ app.get('/register',(req,res)=>{
 })
 app.get('/', async(req,res)=>{
     const articles = await article.find().sort({ createdAt: desc})
-    res.render('artcles/index', {articles: articles})
+    res.render('articles/index', {articles: articles})
 })
 
 app.post('/login', async(req,res) =>{
@@ -55,7 +55,8 @@ app.post('/login', async(req,res) =>{
             id: user._id, 
             email : user.email
         }, JWT_SECRET )
-        return res.json({ status: 'ok', data: token}).redirect("/index")
+        return res.json({ status: 'ok', data: token})
+        
     }
 
     res.json({ status : "error", error: "Inavlid password" })
@@ -88,7 +89,7 @@ if(plainTextPassword.length<5){
            confirm
        })
        console.log("User created successfully!", response)
-       res.redirect("/")
+       
    } catch(error){
        if(error.code === 11000){
         return res.json({ status: 'error', error: 'Username already exists!' })

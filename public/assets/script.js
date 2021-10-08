@@ -13,7 +13,7 @@ async function regUser(event){
   const password = document.getElementById("password").value;
   const confirm = document.getElementById("confirm").value;
 
-  const result =await fetch("/api/register", {
+  const result =await fetch("/register", {
     method : 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ async function regUser(event){
   if(result.status ==='ok'){
 
     alert("Registration Successful!");
-    res.render('/')
+   
   }else{
     alert(result.error);
   }
