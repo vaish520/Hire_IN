@@ -35,6 +35,7 @@ async function regUser(event){
 
     alert("Registration Successful!");
    
+    window.open('/');
   }else{
     alert(result.error);
   }
