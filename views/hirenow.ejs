@@ -25,10 +25,11 @@
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="assets/css/styles.css" />
-		<title>Register</title>
+		<title>HireNow | HireIN</title>
 	</head>
 	<body>
-		<div class="container reg-container py-5">
+		<%- include('nav') %>
+		<div class="container  hirenow-container my-5 py-5">
 			<div class="row mx-2 justify-content-md-center">
 				<div class="col home-col home-r-col d-md-block d-none">
 					<div class="mt-5">
@@ -72,7 +73,7 @@
 					<div class="my-3">
 						<form id="reg-form" action="/"  target="_blank" class="p-4 signup-form">
 							<div class="pb-3 text-center form-title">
-								<h4>Sign Up</h4>
+								<h2>HireNow Form</h2>
 							</div>
 							<div class="form-group">
 								<label
@@ -106,13 +107,13 @@
 								<label
 								for="exampleInputPassword1"
 								class="hire-login-subtitle"
-								>College:</label
+								>Company:</label
 							>
 								<input
 									type="clgname"
 									class="form-control"
 									required
-									id="college"
+									id="company"
 									placeholder="Your college name"
 								/>
 							</div>
@@ -121,7 +122,7 @@
 									<label
 									for="exampleInputPassword1"
 									class="hire-login-subtitle"
-									>Branch :</label
+									>Hire Position :</label
 								>
 									<input
 										type="branch"
@@ -135,10 +136,40 @@
 									<label
 									for="exampleInputPassword1"
 									class="hire-login-subtitle"
-									>Year of Study :</label
+									>Hire Eligibilty :</label
 								>
 									<input
 										type="year"
+										class="form-control"
+										required
+										id="year"
+										placeholder="Year"
+									/>
+								</div>
+							</div>
+							<div class="form-group row pt-3">
+								<div class="col-6 col-sm-6">
+									<label
+									for="exampleInputPassword1"
+									class="hire-login-subtitle"
+									>Stipend :</label
+								>
+									<input
+										type="branch"
+										class="form-control"
+										required
+										id="branch"
+										placeholder="Branch"
+									/>
+								</div>
+								<div class="col-6 col-sm-6">
+									<label
+									for="exampleInputPassword1"
+									class="hire-login-subtitle"
+									>End Date :</label
+								>
+									<input
+										type="date"
 										class="form-control"
 										required
 										id="year"
@@ -164,51 +195,31 @@
 								<label
 								for="exampleInputPassword1"
 								class="hire-login-subtitle"
-								>Password :</label
+								>Company Email:</label
 							>
 								<input
-									type="password"
+									type="email"
 									class="form-control"
 									required
 									id='password'
 									placeholder="Your password"
 								/>
 							</div>
-							<div class="form-group pt-3">
-								<label
-								for="exampleInputPassword1"
-								class="hire-login-subtitle"
-								> Confirm Password :</label
-							>
-								<input
-									type="password"
-									class="form-control"
-									required
-									id="confirm"
-									placeholder="Confirm password"
-								/>
-							</div>
+							
 							<div class="d-grid gap-2 pb-2 text-center">
 								<input
 									type="submit"
-									value="Register"
-									class="
-                                    hire-login-submit p-2 w-100
+									value="HireNow"
+									class=" hire-login-submit p-2 w-100
 										btn btn-round
 										login-button
 										text-white
+										bg-success
 									"
 							    />
 					
 							</div>
-							<div
-								class="modal-footer justify-content-center py-1"
-							>
-								<div class="signup-section pb-0">
-									Already a member?
-									<a href="/" class="text-info"> Sign In!</a>
-								</div>
-							</div>
+							
 						</form>
 					</div>
 				</div>
