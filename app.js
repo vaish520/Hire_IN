@@ -38,9 +38,17 @@ app.get('/register',(req,res)=>{
 
     res.render('register');
 })
+app.get('/hireapply',(req,res)=>{
+
+    res.render('apply');
+})
+app.get('/hirenow',(req,res)=>{
+
+    res.render('hirenow');
+})
 app.get('/blog', async(req,res)=>{
     const articles = await Article.find().sort({ createdAt: desc})
-    res.render('/blog', {articles: articles})
+    res.render('blog', {articles: articles})
 })
 
 app.post('/login', async(req,res) =>{
