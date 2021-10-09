@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const article = require('./routes/article');
+const articlerouter = require('./routes/article');
 // const path = require('path');
 const User = require('./model/user');
+const Article = require('./model/article')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
@@ -21,7 +22,6 @@ mongoose.connect(process.env.MONGO_PROD_URI,{
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true}))
 app.use(express.json())
-app.use('/article',article)
 
 // app.get('/', (req,res) => {
 //     res.sendFile(__dirname+'/views/');
@@ -38,9 +38,9 @@ app.get('/register',(req,res)=>{
 
     res.render('register');
 })
-app.get('/', async(req,res)=>{
-    const articles = await article.find().sort({ createdAt: desc})
-    res.render('articles/index', {articles: articles})
+app.get('/blog', async(req,res)=>{
+    const articles = await Article.find().sort({ createdAt: desc})
+    res.render('/blog', {articles: articles})
 })
 
 app.post('/login', async(req,res) =>{
@@ -105,6 +105,7 @@ if(plainTextPassword.length<5){
 
 //Use View Engine
 app.set('view engine','ejs')
+app.use('/articles',articlerouter)
 
 //Middleware route
 

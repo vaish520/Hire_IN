@@ -3,12 +3,12 @@ const router = express.Router();
 const Article = require('./../model/article');
 
 router.get('/new', (req,res)=>{
-    res.render('articles/new', { article : new Article()})
+    res.render('/new', { article : new Article()})
 })
 
 router.get('/edit/:id', async(req,res)=>{
     const article = await Article.findById(req.params.id)
-    res.render('articles/edit', { articles : article })
+    res.render('/edit', { articles : article })
 })
 
 router.get('/:slug', async(req,res)=>{
@@ -16,7 +16,7 @@ router.get('/:slug', async(req,res)=>{
     if(article===null) {
         res.redirect('/')
     }
-    res.render('articles/show', { article: article})
+    res.render('/show', { article: article})
 })
 
 router.post('/', async(req,res,next)=>{
@@ -42,9 +42,9 @@ function saveArticleAndRedirect(path){
         article.markdown = req.body.markdown
         try{
             article = await article.save()
-            res.redirect(`/articles/${article.slug}`)
+            res.redirect(`/${article.slug}`)
         } catch(e){
-            res.render(`article/${path}`, { article : article})
+            res.render(`/${path}`, { article : article})
         }    }
 }
 
